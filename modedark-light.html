@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="widht=device-widht, initial-scale-1.0">
+            <title>Document</title>
+
+            <style>
+                
+                .kotak1{
+                    background-color: yellow;
+                    border: 1px solid black;
+
+                }
+            </style>
+
+        <script>
+
+            function ubahDark(){
+                document.getElementById('konten').style.backgroundColor="black";
+                    document.getElementById('konten').style.color="white";
+            }
+
+            function ubahLight(){
+                document.getElementById('konten').style.backgroundColor="yellow";
+                    document.getElementById('konten').style.color="black";
+            }
+
+        </script>    
+        </head>
+
+        <body>
+            <button onclick="ubahDark()">Dark Mode</button>
+            <button onclick="ubahLight()">Light Mode</button>
+
+            <div id="konten" class="kotak1"> <h1>Ini Kotak 1</h1></div>
+
+        </body>
+        </html>
