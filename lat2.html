@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>TUGAS</title>
+  <!-- Menyisipkan Vuejs dari CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+
+  <!-- elemen kontainer untuk aplikasi -->
+  <div id="app">
+    <div class="order-detail">
+      <p>Ini adalah detail dari pesanan anda: </p>
+      <hr>
+      <img :src="cover" width="100" />
+      <h4>{{ name }}</h4>
+      Qty: <input type="number" v-model:value="qty" min="1" max="10" />
+      Total: Rp {{ price * qty }}
+    </div>
+    <hr>
+    <label><input type="checkbox" v-model:value="showBonus"> Show Bonus</label>
+    <div class="detail" v-if="showBonus">
+      <p v-if="qty >= 10">Jangan beli banyak-banyak, beli {{ qty }} aja</p>
+      <p v-else-if="qty >= 6">Wahhh ada bos besar yg mau borong nih!</p>
+      <p v-else-if="qty >= 4">Iya iya beli {{ qty }} ,  tapi masih sedikit sih itu.</p>
+      <p v-else-if="qty >= 2">Cuma beli {{ qty }} buku aja nih?</p>
+      <p v-else>Beli Satu doang? Lagi Miskin ya?:)</p>
+    </div>
+  </div>
+
+ <!-- aplikasi Vue Directive kondisi -->
+ <script>
+  var app = new Vue({
+    el: "#app",
+    data: {
+      showBonus: true,
+      name: "Buku Vuejs untuk Pemula",
+      cover: "https://www.petanikode.com/img/buku/vuejs.png",
+      price: 140000,
+      qty: 1
+    }
+  })
+</script>
+</body>
+
+</html>
+
+</html>
