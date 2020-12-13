@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <script src="vue.js"></script>
+    <style>
+        .header{
+            height: 50px;
+            width: 100%;
+            background-color:rgb(53, 144, 167);
+            position:fixed;
+            top:0;
+            left:0;
+            padding: 5px;
+        }
+
+       
+.mainproduct {
+    margin-top: 100px;
+    width: 65%;
+    height: 100%;
+    float:left;
+    border: 1px solid red;
+}
+.cart{
+    margin-top: 100px;
+    width: 30%;
+    height: 100%;
+    float:left;
+
+    border: 1px solid red;
+}
+
+.listproduk {
+    width: 150px;
+    height: 200px;
+    float:left;
+    margin:5px 5px;
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
+    
+    }
+        </style>
+</head>
+
+
+
+<body>
+    
+
+    <div class="header">
+        <h1> VokasiPedia</h1>
+    </div>
+
+
+    <div id="container" class="container">
+
+
+        <div class="mainproduct">
+           
+            <div class="listproduk" v-for="motorku in motor">
+                <div class="thumbnail"> 
+
+                    <img v-bind:src="motorku.image" width="125px" height="100px" >
+                </div>
+                <h4 style="margin: 5px;"> {{motorku.merek}}</h4>
+                <h4 style="margin: 5px;"> {{motorku.harga}}</h4>
+
+                
+<button type="button" v-on:click="addCart(motorku.merek,motorku.harga)">Beli</button>
+
+            </div>
+
+
+
+</div>
+      
+<div class="cart">
+    Keranjang Belanja
+    
+    <br>
+    {{keranjangharga}}
+    {{keranjangmerek}}
+
+    <h1>{{total}}</h1>
+
+    <table border='1'>
+   
+        <tr v-for="(keranjang,index)  in keranjangmerek">
+          <td>{{keranjang}}</td>
+    
+          <td><button v-on:click="removeCart(index)">X </button></td>
+        </tr>
+  
+      </table>
+
+
+
+        </div>
+    
+    
+        </div>
+
+  
+
+
+
+
+
+
+
+    
+<script>
+
+    var vm = new Vue({   
+             el: '#container',
+             data: {
+                 motor:[
+                     {merek:'supra',harga:5500000,image:'https://cdn0-production-images-kly.akamaized.net/QbYVo9CS2CJxhhhFQJMnDmLQ4q4=/640x360/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/2747152/original/088219600_1552155797-AHM_Honda_Supra_X_125_FI._06_.jpg'}
+                     ,{merek:'mio',harga:3400000,image:'https://d2pa5gi5n2e1an.cloudfront.net/global/images/product/motorcycle/Yamaha_Mio/Yamaha_Mio_L_1.jpg'}
+                     ,{merek:'NMax',harga:2500000,image:'https://d2pa5gi5n2e1an.cloudfront.net/global/images/product/motorcycle/Yamaha_NMAX_2018/Yamaha_NMAX_2018_L_1.jpg'}
+                     ,{merek:'Shogun',harga:3400000, image:'https://d2pa5gi5n2e1an.cloudfront.net/webp/global/images/product/motorcycle/Suzuki_Shogun_Axelo125/Suzuki_Shogun_Axelo125_L_1.jpg'}
+               
+                    ],
+                 keranjangharga:[55000, 34000, 34000],
+                 keranjangmerek:[],
+               
+             },
+
+             computed: {
+  total() {
+
+
+         // Getting sum of numbers
+        //  var sum = array.reduce(function(a, b){
+        //     return a + b;
+        // }, 0);
+
+
+    return this.keranjangharga.reduce(function (sum, item) {
+        return sum + item
+    }, 0)
+  }
+
+}, 
+
+             methods: {
+                addCart:function(merek, harga){
+                     this.keranjangmerek.push(merek);
+                     this.keranjangharga.push(harga);
+                     
+                 },
+
+                 removeCart:function(index){
+                     this.keranjangmerek.splice(index,1)
+
+                     this.keranjangharga.splice(index,1)
+                 
+                 }
+
+
+             }
+
+
+   
+        })
+    
+    </script>
+
+
+</body>
+</html>
